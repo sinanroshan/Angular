@@ -1,5 +1,5 @@
-<!--  Desktop -->
 <topbar></topbar>
+<!--  Desktop -->
 <div class="pc">
 <div class="space">
 <div class="top-stripe"><div class="link" routerLink="">Home  </div>/
@@ -10,7 +10,7 @@
     <div class="order_bg">
       <div class="box" *ngFor="let inv of orderInv">
          <div class="tob_bar" (click)=viewOrder(inv[0])>
-             <div class="date"><div>Orderd On</div><div class="date1">{{inv[3]}}</div></div>
+             <div class="date"><div>Orderd On</div><div class="date1">{{inv[3] | date:'dd-MM-yyyy'}}</div></div>
              <div class="tamount"><div>Total Amount</div><div class="tamount1">₹{{inv[1]}}.00</div></div>
              <!-- <div class="orderqty"><div>Total Items{{inv[2]}}</div> -->
              <div class="right">
@@ -35,11 +35,10 @@
            <div class="tob_bar" (click)=viewOrder(inv[0])>
                <div class="m_date"><div>Orderd On</div><div class="m_date1">{{inv[3]}}</div></div>
                <div class="m_tamount"><div>Total Amount</div><div class="m_tamount1">₹{{inv[1]}}.00</div></div>
-               <!-- <div class="orderqty"><div>Total Items{{inv[2]}}</div> -->
                <div class="m_right">
                    <div>
                       <div class="order_no">Order No:<span class="inv_no">#{{inv[0]}}</span></div>
-                      <br><div class="status ">{{inv[4]}}</div>
+                      <br><div class="status">{{inv[4]}}</div>
                    </div>
                </div>
            </div> <div class="m_products" *ngIf="(inv[4]=='Order confirmed')" (click)=cnacel(cancelitemAlert,inv[0])>Cancel order</div>

@@ -47,8 +47,8 @@ export class OrderitemsComponent implements OnInit {
       console.log(this.orderProducts)
       let i;
       for(i=0; i<this.orderProducts.length;i++){
-        this.mrpTotal= this.mrpTotal+(this.orderProducts[i][7] *this.orderProducts[i][4]);
-        this.total=this.total+(this.orderProducts[i][6] *this.orderProducts[i][4]);
+        this.mrpTotal= this.mrpTotal+(this.orderProducts[i][6] *this.orderProducts[i][3]);
+        this.total=this.total+(this.orderProducts[i][5] *this.orderProducts[i][3]);
       }
       this.discount=this.mrpTotal-this.total;
     });
@@ -71,7 +71,7 @@ closemodel(cancelitemAlert){
   this.modalService.dismissAll(cancelitemAlert);
 }
 cancelItem(cancelitemAlert){
-  this.auth.cancelThis(this.inv, this.cancelP_id,"Order Cancelled").subscribe(res=>{
+  this.auth.cancelThis(this.inv, this.cancelP_id,"Cancelled").subscribe(res=>{
     window.location.reload();
   });
   this.modalService.dismissAll(cancelitemAlert);

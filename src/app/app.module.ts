@@ -50,7 +50,7 @@ import { MobSerchComponent } from './Ecom/mob-serch/mob-serch.component';
     OrdersComponent,
     OrderitemsComponent,
     BillComponent,
-    MobSerchComponent,
+    MobSerchComponent
 
   ],
   imports: [

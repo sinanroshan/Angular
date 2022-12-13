@@ -1,11 +1,37 @@
 <topbar></topbar>
+
 <!--  Desktop -->
 <div class="pc">
 <div class="product" style="padding-top:100px; display: flex;
-background-color:rgb(245, 245, 245);" *ngFor="let p of product">
-        <div  class="image">
-            <img class="image-card" src="{{p.image1}}">
+background-color:rgb(245, 245, 245); height: auto;" *ngFor="let p of product">
+    <div  class="image">
+      <div id="images" class="carousel carousel-dark slide imgBox" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#images" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#images" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#images" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#images" data-bs-slide-to="3" aria-label="Slide 4"></button>
+          <button type="button" data-bs-target="#images" data-bs-slide-to="4" aria-label="Slide 5"></button>
         </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active" data-bs-interval="10000">
+            <img src="{{p.keyImage}}" class="image-card d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <img src="{{p.image1}}" class="image-card d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <img src="{{p.image2}}" class="image-card d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <img src="{{p.image3}}" class="image-card d-block w-100" alt="{{imgDefault}}">
+          </div>
+          <div class="carousel-item" data-bs-interval="10000">
+            <img src="{{p.image4}}" class="image-card d-block w-100" alt="{{imgDefault}}">
+          </div>
+        </div>
+      </div>
+    </div>
         <div class="details-card" *ngFor="let p of product">
             <div class="p_name">{{p.pname}}</div>
             <div class="mrp text-muted">MRP. ({{p.mrp}}/-)</div>
@@ -16,9 +42,24 @@ background-color:rgb(245, 245, 245);" *ngFor="let p of product">
             </div>
             <div>
                 <div><p>Pruduct Details</p></div>
-                <div>product details will show here</div>
+                <p class="discription">{{p.discription}}</p>
             </div>
         </div>
+</div>
+
+<div class="suggesionList row">
+  <div class="sugg_head">Suggested For You</div>
+<div class="card m-3"
+*ngFor="let Product of SuggesionList">
+ <img class="card-img-top " src="{{Product.keyImage}}" style=" width: 200px; height: 200px;" >
+ <div class="card-name" style="color: rgb(0, 109, 109); font-size: 15px;"><strong>{{Product.pname}}</strong></div>
+ <div class="card-body">   
+      <span class="d-flex"> <div style="color: brown;"><strong>Rs. {{Product.price}}</strong></div><div>&nbsp;<del class="text-muted"> MRP: {{Product.mrp}}</del></div> </span>
+   <div class="d-flex justify-content-between align-items-center" >
+    <button type="button" class="btn btn-outline-secondary btn-sm" style="margin: auto; width: 90%;" (click)=rerout(Product.pname)>View Details</button>
+ </div>
+</div>
+</div>
 </div>
 
 <div style="margin-left:0px;" class="mt-auto">
@@ -30,14 +71,59 @@ background-color:rgb(245, 245, 245);" *ngFor="let p of product">
 <div class="mob">
 <div class="m_product" *ngFor="let p of product">
     <div class="m_Pdetails">
-        <img class="m_image-card" src="{{p.image1}}">
+        <div m_img >
+          <div id="image" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#image" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#image" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#image" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              <button type="button" data-bs-target="#image" data-bs-slide-to="3" aria-label="Slide 4"></button>
+              <button type="button" data-bs-target="#image" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="11000">
+                <img src="{{p.keyImage}}" class="image-card d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-bs-interval="10000">
+                <img src="{{p.image1}}" class="image-card d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-bs-interval="10000">
+                <img src="{{p.image2}}" class="image-card d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-bs-interval="10000">
+                <img src="{{p.image3}}" class="image-card d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-bs-interval="10000">
+                <img src="{{p.image4}}" class="image-card d-block w-100" alt="...">
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="m_category">{{p.pcategory}}</div>
         <div class="m_p_name">{{p.pname}}</div>
         <div><span class="m_price">₹{{p.price}}/-</span> 
              <span class="m_mrp">(₹{{p.mrp}})</span>
         </div> 
+        <div>
+          <div>
+            <div class="p_detailsHead">Pruduct Details</div>
+            <div class="p_details">{{p.discription}}</div>
+            </div>
+      </div>
     </div>
-        <app-bottombar></app-bottombar>
+
+    <div class="m_plist row">
+      <div class="sugg_head">Suggested For You</div>
+      <div class="m_card" *ngFor="let p of SuggesionList" (click)=rerout(p.pname)>
+        <img class="m_card_img" src="{{p.keyImage}}">
+            <div class="m_pDetails" style="display: block;">
+                <div class="m_pNmae">{{p.pname}}</div>
+                <div class="m_pCategory">{{p.pcategory}}</div>
+                <div class="m_price">₹<span class="m_pPrice">{{p.price}}</span> &nbsp;<span class="m_pmrp">(₹{{p.mrp}})</span></div> 
+            </div>
+      </div>
+    </div>
     <div class="m_btn_bg">
         <button *ngIf="!adtoCart" class="m_button" (click)=AddtoCart(p)>Add To Cart </button>
         <button *ngIf="adtoCart" class="m_cart_button" routerLink="/bag" >

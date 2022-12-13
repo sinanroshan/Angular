@@ -7,12 +7,11 @@ import { Product } from '../Model/product';
   providedIn: 'root'
 })
 export class ProductItemService {
+  ip="http://192.168.1.2:9090"
+localhost="http://localhost:9090"
 
-  private orderUrlhost="http://192.168.1.3:9090/auth/";
-  private orderUrllocal = "http://http://localhost:9090/auth";
-
-  private productApihost="http://192.168.1.3:9090/api/product/";
-  private ProductApilocal = "http://localhost:9090/api/product/";
+  private orderApi= this.localhost+"/auth/";
+  private ProductApi = this.localhost+"/api/product/";
   
   public CartItem :any=[]
   public productList = new BehaviorSubject<any>([]);
@@ -29,7 +28,7 @@ export class ProductItemService {
         return item.productId === Product.productId;
       });
     if(exist){
-      exist.Quantity++;
+      //exist.Quantity++;
       exist.Total = exist.Quantity * exist.price;
       this.setCartData(ls);
     }else{
@@ -42,7 +41,6 @@ export class ProductItemService {
         this.productList.next(this.CartItem);
         this.setCartData(this.CartItem);
         this.productList.next(this.CartItem);
-       // console.log(this.CartItem);
           }
     }
   } 
@@ -76,8 +74,8 @@ updateQtyMinus(itm){
   getCartData(){
     return JSON.parse(localStorage.getItem('cart'));
   }
-  ViewProduct(pId:any):Observable<Product[]>{
-    return this.http.get<Product[]>(this.productApihost+pId);
+  ViewProduct(pname:any):Observable<Product[]>{
+    return this.http.get<Product[]>(this.ProductApi+pname);
   }
   removeCartItem(pid: any){
       this.CartItem= JSON.parse(localStorage.getItem('cart'));
